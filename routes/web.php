@@ -37,13 +37,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Permission', 'as' => 'user
 });
 
 /**
- * Test routes
+ * Product routes
  */
-Route::group(['middleware' => 'auth', 'namespace' => 'Test'], function() {
-    Route::resource('testes', 'TestController');
+Route::group(['middleware' => 'auth', 'namespace' => 'Product'], function() {
+    Route::resource('produtos', 'ProductController');
 });
 
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Route::get('/dashboard', 'HomeController@index')->name('dashboard');
