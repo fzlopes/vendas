@@ -40,6 +40,6 @@ class UsersTableSeeder extends Seeder
 
         $user->roles()->attach(Role::all()->where('role', 'SUPER_ADMIN')->first()->value('id'));
 
-        $this->command->info('The superadmin Fábio was created.');
+        $this->command->info('The superadmin André was created.');
     }
 }

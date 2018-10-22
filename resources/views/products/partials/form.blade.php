@@ -36,7 +36,7 @@
                                         <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
                                             {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
                                             <br>
-                                            {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor do produto', 'tabindex' => 2]) !!}
+                                            {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor do produto', 'required' => 'required', 'tabindex' => 2]) !!}
                                         </div>
                                     </div>
                                 </div>
