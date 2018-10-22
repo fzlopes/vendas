@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductFormRequest extends FormRequest
+class ClientFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class ProductFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'       => 'required|min:3',
-            'value'      => 'required'
+            'name' => 'required',
         ];
     }
 
-    /**
+     /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -37,8 +36,7 @@ class ProductFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'  => 'o nome do produto precisa ser informado.',
-            'value.required' => 'o valor do produto precisa ser informado.'
-       ];
+            'name.required' => 'o nome do cliente precisa ser informado.',
+        ];
     }
 }

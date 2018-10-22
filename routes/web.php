@@ -43,4 +43,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Product'], function() {
     Route::resource('produtos', 'ProductController');
 });
 
+/**
+ * Client routes
+ */
+Route::group(['middleware' => 'auth', 'namespace' => 'Client'], function() {
+    Route::resource('clientes', 'ClientController');
+});
 
