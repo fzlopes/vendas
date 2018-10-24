@@ -50,3 +50,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Client'], function() {
     Route::resource('clientes', 'ClientController');
 });
 
+/**
+ * Sale routes
+ */
+Route::group(['middleware' => 'auth', 'namespace' => 'Sale'], function() {
+    Route::resource('vendas', 'SaleController');
+});
+
