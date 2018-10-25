@@ -30,7 +30,7 @@
                                 {!! Form::hidden('sale_date', \Carbon\Carbon::now()->format('Y-m-d')) !!}
                                 <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
                                     {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
-                                    {!! Form::select('client_id', $clients, !empty($sale->client)?$sale->client->id:null,  ['class' => 'form-control cliente','required' => 'required', 'data-placeholder' => 'Selecione o cliente...', 'tabindex' => '1']) !!}
+                                    {!! Form::select('client_id', $clients, !empty($sale->client)?$sale->client->id:null,  ['class' => 'form-control cliente','required' => 'required', 'placeholder' => 'Selecione o cliente...', 'tabindex' => '1']) !!}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('address') ? 'has-error' :'' }}">
