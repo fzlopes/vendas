@@ -17,6 +17,7 @@ class CreateSaleDetailTable extends Migration
             $table->increments('id');
             $table->integer('sale_id')->unsigned();
             $table->integer('product_id')->unsigned();
+            $table->integer('amount')->unsigned();
             $table->decimal('value',8,2);
             $table->decimal('total',8,2);
             $table->timestamps();

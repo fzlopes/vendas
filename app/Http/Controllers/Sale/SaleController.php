@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Sale;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Sale;
+use PhpParser\Node\Stmt\TryCatch;
+use App\Client;
 
 class SaleController extends Controller
 {
@@ -14,7 +17,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::where('user_id', '=', Auth()->user()->id )->orderBy('sale_date', 'asc')->get();
+        return view('sales.index')->with(compact('sales'));
     }
 
     /**
@@ -24,7 +28,12 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+
+        return view('sales.create')->with(compact('clients'));
     }
 
     /**
@@ -35,7 +44,17 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //try {
+            //DB::beginTransaction();
+            Sale::create($request->all());
+
+            //$productId = $request->get('product_id');
+            return redirect()
+            ->route('vendas.index')
+            ->with(['success' => 'Venda cadastrada com sucesso!']);
+
+            
+        //}
     }
 
     /**

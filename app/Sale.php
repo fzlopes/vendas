@@ -17,6 +17,10 @@ class Sale extends Model
         'user_id', 'client_id', 'sale_date', 'sale_total'
     ];
 
+    protected $dates = [
+        'sale_date'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');

@@ -16,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy('name', 'asc')->get();
+        $clients = Client::where('user_id', '=', Auth()->user()->id )->orderBy('name', 'asc')->get();
         return view('clients.index')->with(compact('clients'));
     }
 
