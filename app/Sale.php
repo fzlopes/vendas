@@ -14,7 +14,7 @@ class Sale extends Model
      * @var array'celp
      */
     protected $fillable = [
-        'user_id', 'client_id', 'sale_date', 'sale_total'
+        'user_id', 'client_id', 'paymentType_id', 'sale_date', 'sale_total'
     ];
 
     protected $dates = [
@@ -29,5 +29,10 @@ class Sale extends Model
     public function client()
     {
         return $this->belongsTo('App\Client');
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo('App\PaymentType','paymentType_id');
     }
 }

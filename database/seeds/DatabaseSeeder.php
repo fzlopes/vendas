@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         if(!app()->environment('production')):
             $this->call(RolesTableSeeder::class);
             $this->call(UsersTableSeeder::class);
+            $this->call(PaymentTypesTableSeeder::class);
             $this->call(ProductsTableSeeder::class);
         endif;
     }

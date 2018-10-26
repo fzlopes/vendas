@@ -32,7 +32,7 @@
 
 @section('title')
 
-    <h1 class="page-title"> Vendaes
+    <h1 class="page-title"> Vendas
         <small>lista de todos as vendas cadastrados no sistema</small>
     </h1>
 
@@ -75,11 +75,12 @@
                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                         <thead>
                             <tr>
-                                <th> Id       </th>
-                                <th> Data     </th>
-                                <th> Cliente  </th>
-                                <th> Total R$ </th>
-                                <th> Actions  </th>
+                                <th> Id             </th>
+                                <th> Data           </th>
+                                <th> Cliente        </th>
+                                <th> Tipo Pagamento</th>
+                                <th> Total R$       </th>
+                                <th> Actions        </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,6 +91,7 @@
                                 <td> {{$sale->id}} </td>
                                 <td> {{$sale->sale_date->format('d/m/Y')}} </td>
                                 <td> {{$sale->client->name}} </td>
+                                <td> {{$sale->paymentType->name}} </td>
                                 @if($sale->sale_total)
                                     <td> {{$sale->sale_total}} </td>
                                 @else
@@ -98,6 +100,7 @@
                                 <td>
                                     <div class="clearfix">
                                         <a href="{{ route('vendas.show', $sale->id) }}"><button class="btn grey-cascade btn-outline btn-xs mt-sweetalert" type="button"> ver </button></a>
+                                        <a href="{{ route('vendas.edit', $sale->id) }}"><button class="btn blue-hoki btn-outline btn-xs mt-sweetalert" type="button"> editar </button></a>
                                         <button class="btn red-sunglo btn-xs mt-sweetalert" type="button" data-button="del" data-id="{{ $sale->id }}" data-title="Confirma exclusão da venda do dia {{ $sale->sale_date }}?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> apagar </button>
                                     </div>
                                     {!! Form::open(['url' => '', 'method' => 'deleter', 'id' => 'formBlockAndDelete']) !!} {!! Form::close() !!}

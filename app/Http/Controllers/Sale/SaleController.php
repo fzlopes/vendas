@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Sale;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Client;
+use App\PaymentType;
 
 class SaleController extends Controller
 {
@@ -32,8 +33,13 @@ class SaleController extends Controller
             ->orderBy('name', 'asc')
             ->get()
             ->pluck('name','id');
+        
+        $paymentTypes = PaymentType::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
 
-        return view('sales.create')->with(compact('clients'));
+        return view('sales.create')->with(compact('clients','paymentTypes'));
     }
 
     /**

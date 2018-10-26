@@ -30,12 +30,17 @@
                                 {!! Form::hidden('sale_date', \Carbon\Carbon::now()->format('Y-m-d')) !!}
                                 <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
                                     {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
-                                    {!! Form::select('client_id', $clients, !empty($sale->client)?$sale->client->id:null,  ['class' => 'form-control cliente','required' => 'required', 'placeholder' => 'Selecione o cliente...', 'tabindex' => '1']) !!}
+                                    {!! Form::select('client_id', $clients, !empty($sale->client)?$sale->client->id:null,  ['class' => 'form-control','required' => 'required', 'placeholder' => 'Selecione o cliente...', 'tabindex' => '1']) !!}
+                                </div>
+
+                                <div class=" form-group {{ $errors->has('paymentType_id') ? 'has-error' :'' }}">
+                                    {!! Form::label('paymentType_id', 'Tipo de pagamento *', ['class' => 'control-label']) !!}
+                                    {!! Form::select('paymentType_id', $paymentTypes, !empty($sale->paymentType)?$sale->paymentType->id:null,  ['class' => 'form-control','required' => 'required', 'placeholder' => 'Selecione o tipo de pagamento...', 'tabindex' => '2']) !!}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('address') ? 'has-error' :'' }}">
                                     {!! Form::label('sale_total', 'Total R$ ', ['class' => 'control-label']) !!}
-                                    {!! Form::text('sale_total', null, ['class' => 'form-control', 'tabindex' => 2]) !!}
+                                    {!! Form::text('sale_total', null, ['class' => 'form-control','required' => 'required', 'tabindex' => 3]) !!}
                                 </div>
                         </div>
 
@@ -43,7 +48,7 @@
                             <div class="tab-content">
                                 <div class="form-actions">
                                     <div class="margiv-top-10">
-                                        {!! Form::submit('Enviar', ['class' => 'btn green', 'tabindex' => 6]) !!}
+                                        {!! Form::submit('Enviar', ['class' => 'btn green', 'tabindex' => 4]) !!}
                                     </div>
                                 </div>
 
