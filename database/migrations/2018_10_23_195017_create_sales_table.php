@@ -34,3 +34,4 @@ class CreateSalesTable extends Migration
         Schema::dropIfExists('sales');
     }
 }
+
