@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group {{ $errors->has('subtotal') ? 'has-error' :'' }}">
-                                                {!! Form::label('subtotal', 'Subtotal', ['class' => 'control-label']) !!}
+                                                {!! Form::label('subtotal', 'Subtotal *', ['class' => 'control-label']) !!}
                                                 {!! Form::text('value[]', null, ['class' => 'form-control subtotal', 'placeholder' => 'Subtotal', 'id' => 'subtotal[]', 'tabindex' => 7]) !!}
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                             <div class="tab-content">
                                 <div class="form-actions">
                                     <div class="margiv-top-10">
-                                        {!! Form::submit('Enviar', ['class' => 'btn green', 'tabindex' => 4]) !!}
+                                        {!! Form::submit('Enviar', ['class' => 'btn green', 'tabindex' => 8]) !!}
                                     </div>
                                 </div>
 
