@@ -57,9 +57,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            DB::beginTransaction();
-            $sale=new Sale;
+            $sale = new Sale;
             $sale->user_id=$request->get('user_id');
             $sale->client_id=$request->get('client_id');
             $sale->paymentType_id=$request->get('paymentType_id');
@@ -68,31 +66,7 @@ class SaleController extends Controller
             
             $sale->save();
    
-            $procuct_id = $request->get('product_id');
-            $amount = $request->get('amount');
-            $value = $request->get('value');
-            $total = $request->get('total');
-
-            $cont = 0;
-   
-            while($cont < count($product_id)){
-                $saleDetail = new SaleDetail();
-                $saleDetail->sale_id= $sale->id; 
-                $saleDetail->product_id= $product_id[$cont];
-                $saleDetail->amount= $amount[$cont];
-                $saleDetail->value= $value[$cont];
-                $saleDetail->total= $total[$cont];
-                $saleDetail->save();
-                $cont=$cont+1;            
-            }
-   
-            DB::commit();
-   
-           }catch(\Exception $e)
-           {
-              DB::rollback();
-           }
-
+            
         return redirect()
         ->route('vendas.index')
         ->with(['success' => 'Venda cadastrada com sucesso!']);
