@@ -82,6 +82,12 @@
                 $('#append_'+$(this).data('produto')).remove();
             });
 
+             $(".product_id").change(function(){
+                alert("The text has been changed.");
+            });
+
+            
+
                       
         });
         
