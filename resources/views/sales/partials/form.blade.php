@@ -46,9 +46,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <div class="form-group {{ $errors->has('observation') ? 'has-error' :'' }}">
+                                            {!! Form::label('observation', 'Observação ', ['class' => 'control-label']) !!}
+                                            {!! Form::textarea('observation', null, ['class' => 'form-control form-control-lg','size' => '200 x 5', 'tabindex' => 3]) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group {{ $errors->has('sale_total') ? 'has-error' :'' }}">
                                             {!! Form::label('sale_total', 'Total R$ ', ['class' => 'control-label']) !!}
-                                            {!! Form::text('sale_total', null, ['class' => 'form-control','required' => 'required', 'tabindex' => 3]) !!}
+                                            {!! Form::text('sale_total', null, ['class' => 'form-control','required' => 'required', 'tabindex' => 4]) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -59,27 +67,27 @@
                                         <div class="col-md-3">
                                             <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
                                                 {!! Form::label('product_id', 'Produto *', ['class' => 'control-label']) !!}
-                                                {!! Form::select('product_id[]', $products, !empty($sale->product)?$sale->product->id:null,  ['class' => 'form-control product_id','required' => 'required', 'placeholder' => 'Selecione o produto...', 'tabindex' => '4']) !!}
+                                                {!! Form::select('product_id[]', $products, !empty($sale->product)?$sale->product->id:null,  ['class' => 'form-control product_id','required' => 'required', 'placeholder' => 'Selecione o produto...', 'tabindex' => '5']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group {{ $errors->has('amount') ? 'has-error' :'' }}">
                                                 {!! Form::label('amount', 'Quantidade *', ['class' => 'control-label']) !!}
-                                                {!! Form::number('amount[]', null, ['class' => 'form-control amount', 'placeholder' => 'Quantidade', 'id' => 'amount[]', 'tabindex' => 5]) !!}
+                                                {!! Form::number('amount[]', null, ['class' => 'form-control amount', 'placeholder' => 'Quantidade', 'id' => 'amount[]', 'tabindex' => 6]) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group {{ $errors->has('value') ? 'has-error' :'' }}">
                                                 {!! Form::label('value', 'Valor *', ['class' => 'control-label']) !!}
-                                                {!! Form::text('value[]', null, ['class' => 'form-control value', 'placeholder' => 'Valor', 'id' => 'value[]', 'tabindex' => 6]) !!}
+                                                {!! Form::text('value[]', null, ['class' => 'form-control value', 'placeholder' => 'Valor', 'id' => 'value[]', 'tabindex' => 7]) !!}
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group {{ $errors->has('subtotal') ? 'has-error' :'' }}">
                                                 {!! Form::label('subtotal', 'Subtotal *', ['class' => 'control-label']) !!}
-                                                {!! Form::text('value[]', null, ['class' => 'form-control subtotal', 'placeholder' => 'Subtotal', 'id' => 'subtotal[]', 'tabindex' => 7]) !!}
+                                                {!! Form::text('value[]', null, ['class' => 'form-control subtotal', 'placeholder' => 'Subtotal', 'id' => 'subtotal[]', 'tabindex' => 8]) !!}
                                             </div>
                                         </div>
                                                         

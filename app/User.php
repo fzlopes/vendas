@@ -51,11 +51,6 @@ class User extends Authenticatable
         return false;
     }
 
-    public function photos()
-    {
-        return $this->hasMany('App\Photo');
-    }
-
     public function clients()
     {
         return $this->hasMany('App\Client');

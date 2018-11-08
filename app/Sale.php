@@ -14,7 +14,7 @@ class Sale extends Model
      * @var array'celp
      */
     protected $fillable = [
-        'user_id', 'client_id', 'paymentType_id', 'sale_date', 'sale_total'
+        'user_id', 'client_id', 'paymentType_id', 'observation', 'sale_date', 'sale_total'
     ];
 
     protected $dates = [

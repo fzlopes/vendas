@@ -18,6 +18,7 @@ class CreateSalesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('client_id')->unsigned();
             $table->integer('paymentType_id')->unsigned();
+            $table->text('observation')->nullable();
             $table->date('sale_date');
             $table->decimal('sale_total',8,2);
             $table->timestamps();
