@@ -91,7 +91,8 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+        return view('sales.edit')->with(compact('sale'));
     }
 
     /**
@@ -103,7 +104,13 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sale = Sale::find($id);
+        $sale->fill($request->all());
+        $sale->save();
+
+        return redirect()
+            ->route('vendas.index')
+            ->with(['success' => 'Venda alterada com sucesso!']);
     }
 
     /**

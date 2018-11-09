@@ -77,19 +77,26 @@
                     '</div></div></div></div>');
                 i++;
             });
-
+            
             $(document).on('click', '.remover', function() {
                 $('#append_'+$(this).data('produto')).remove();
             });
 
-             $(".product_id").change(function(){
-                alert("The text has been changed.");
-            });
+             $('.product_id').change(function () {
 
-            
+                var rota = '{{ url ('produtos') }}';
 
-                      
-        });
-        
+$               .get(rota,function (produtos) {
+
+                //$('select[name=city_id]').empty();
+                //$('select[name=city_id]').append("<option value='' disabled selected style='display:none;'>Selecione a cidade...</option>");
+
+                $.each(produtos, function (key, value) {
+                    $('.value').append(value.value);
+                });
+
+             });
+            });  
+        })
     </script>
 @endsection

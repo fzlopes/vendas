@@ -87,6 +87,12 @@ class ProductController extends Controller
             ->with(['success' => 'Produto alterado com sucesso!']);
     }
 
+    public function getProducts()
+    {
+        $products = Product::orderBy('name', 'asc')->select('id', 'name','value')->get();
+        return response()->json($products);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
