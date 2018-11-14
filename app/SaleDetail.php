@@ -14,7 +14,7 @@ class SaleDetail extends Model
      * @var array'celp
      */
     protected $fillable = [
-        'sale_id', 'product_id', 'amount', 'value', 'subtotal'
+        'sale_id', 'product_id', 'amount', 'value'
     ];
 
     public function sale()

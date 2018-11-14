@@ -15,7 +15,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="{{ route('sales.index') }}">Vendas</a>
+                <a href="{{ route('vendas.index') }}">Vendas</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>

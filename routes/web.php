@@ -39,10 +39,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Permission', 'as' => 'user
 /**
  * Product routes
  */
-Route::group(['namespace' => 'Product'], function() {
-    Route::get('/produtos', 'ProductController@getProducts');
-});
-
 Route::group(['middleware' => 'auth', 'namespace' => 'Product'], function() {
     Route::resource('produtos', 'ProductController');
 });

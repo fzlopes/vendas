@@ -78,7 +78,7 @@
                                 <th> Id       </th>
                                 <th> Nome     </th>
                                 <th> Preço </th>
-                                <th> Actions  </th>
+                                <th> Ações  </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,9 +93,7 @@
                                     <div class="clearfix">
                                         <a href="{{ route('produtos.show', $product->id) }}"><button class="btn grey-cascade btn-outline btn-xs mt-sweetalert" type="button"> ver </button></a>
                                         <a href="{{ route('produtos.edit', $product->id) }}"><button class="btn blue-hoki btn-outline btn-xs mt-sweetalert" type="button"> editar </button></a>
-                                        <button class="btn red-sunglo btn-xs mt-sweetalert" type="button" data-button="del" data-id="{{ $product->id }}" data-title="Confirma exclusão do produto {{ $product->name }}?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> apagar </button>
                                     </div>
-                                    {!! Form::open(['url' => '', 'method' => 'deleter', 'id' => 'formBlockAndDelete']) !!} {!! Form::close() !!}
                                 </td>
                             </tr>
 
@@ -112,34 +110,6 @@
 @endsection
 
 @section('scripts')
-    <script>
-        var agree_action = function (sa_button, sa_id) {
-            if (sa_button == 'del') {
-
-                $.ajax({
-                    type:"DELETE",
-                    url:'produtos/'+sa_id,
-                    data:$('#formBlockAndDelete').serialize(),
-                    dataType: 'json',
-                    success: function(data){
-                        location.reload(false);
-                    },
-                    error : function(data){
-                        location.reload(false);
-                    }
-                });
-
-            }
-            $('button').focus(function() {
-                this.blur();
-            });
-        }
-        var not_agree_action = function () {
-            $('button').focus(function() {
-                this.blur();
-            });
-        }
-    </script>
     <script src="{{ asset('vendor/global/plugins/bootstrap-sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/pages/scripts/ui-sweetalert.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>

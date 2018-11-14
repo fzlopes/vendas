@@ -28,7 +28,7 @@
                             <div class="tab-content">
                                 <div class="form-group {{ $errors->has('name') ? 'has-error' :'' }}">
                                     {!! Form::label('name', 'Nome *', ['class' => 'control-label']) !!}
-                                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nome do produto', 'required' => 'required', 'tabindex' => 1]) !!}
+                                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required', 'tabindex' => 1]) !!}
                                 </div>
 
                                 <div class="row">
@@ -36,7 +36,7 @@
                                         <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
                                             {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
                                             <br>
-                                            {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor do produto', 'required' => 'required', 'tabindex' => 2]) !!}
+                                            {!! Form::text('value', null, ['class' => 'form-control', 'required' => 'required', 'tabindex' => 2]) !!}
                                         </div>
                                     </div>
                                 </div>

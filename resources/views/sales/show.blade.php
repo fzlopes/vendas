@@ -14,7 +14,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="{{ route('clientes.index') }}">Clientes</a>
+                <a href="{{ route('vendas.index') }}">Vendas</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -34,7 +34,7 @@
 
 @section('title')
 
-    <h1 class="page-title"> Visualizar cliente </h1>
+    <h1 class="page-title"> Visualizar venda </h1>
 
 @endsection
 
@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="btn-group pull-right">
-                                            <a href="{{ route('clientes.index') }}" class="btn sbold default"> Voltar <i class="fa fa-rotate-left"></i></a>
+                                            <a href="{{ route('vendas.index') }}" class="btn sbold default"> Voltar <i class="fa fa-rotate-left"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -72,22 +72,18 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Nome:</label>
+                                        <label class="control-label col-md-3">Data:</label>
                                         <div class="col-md-9">
-                                            <p class="form-control-static"> {{ $client->name }} </p>
+                                            <p class="form-control-static"> {{$sale->sale_date->format('d/m/Y')}} </p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Endereço:</label>
+                                        <label class="control-label col-md-3">Cliente:</label>
                                         <div class="col-md-9">
-                                            @if ($client->address)
-                                                <p class="form-control-static"> {{ $client->address }} </p>    
-                                            @else
-                                                <p class="form-control-static">  </p>
-                                            @endif
+                                            <p class="form-control-static"> {{$sale->client->name}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -97,63 +93,54 @@
                             <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3">Telefone:</label>
-                                            @if($client->phone)
-                                                <div class="col-md-6">
-                                                    @if(Agent::isMobile())
-                                                        <p class="form-control-static"> <a href="tel:55{{ $client->phone }}">{{ $client->phone }} </a></p>
-                                                    @else
-                                                        <p class="form-control-static"> {{ $client->phone }} </p>
-                                                    @endif
-                                                </div>
-                                            @endif
+                                            <label class="control-label col-md-3">Tipo Pag.:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{$sale->paymentType->name}} </p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">Celular:</label>
-                                                @if($client->celphone)
-                                                    <div class="col-md-6">
-                                                        @if(Agent::isMobile())
-                                                            <p class="form-control-static"> <a href="tel:55{{ $client->celphone }}">{{ $client->celphone }} </a></p>
-                                                        @else
-                                                            <p class="form-control-static"> {{ $client->celphone }} </p>
-                                                        @endif
-                                                    </div>
-                                                @endif
+                                                <label class="control-label col-md-3">Observação:</label>
+                                                <div class="col-md-9">
+                                                    <p class="form-control-static"> {{$sale->observation}} </p>
+                                                </div>
                                             </div>
                                     </div>
                             </div>        
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3">Whats:</label>
-                                            <div class="col-md-6">
-                                                @if(Agent::isMobile())
-                                                    @if($client->whats)
-                                                        <p class="form-control-static"><a href="https://wa.me/55{{$client->celphone}}"><img src="<?php echo e(asset('img/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></a></p>
-                                                    @else
-                                                        <p class="form-control-static"> </p>
-                                                    @endif
-                                                @else
-                                                    @if($client->whats)
-                                                        <p class="form-control-static"><img src="<?php echo e(asset('img/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></p>
-                                                    @else
-                                                        <p class="form-control-static"> </p>
-                                                    @endif
-                                                @endif
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                                    
+                            <div class="col-md-12">
+                                <table id="details" class="table table-striped table-bordered table-condensed table-hover">
+                                    <thead>
+                                        <th>Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Valor</th>
+                                        <th>Subtotal</th>
+                                    </thead>
+                                    <tfoot>
+                                        <th>TOTAL</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><h4 id="total">R$ {{$sale->sale_total}}</h4></th>    
+                                    </tfoot>
+                                    <tbody>
+                                       @foreach($saleDetails as $saleDetail)
+                                       <tr>
+                                           <td>{{$saleDetail->product->name}}</td>
+                                           <td>{{$saleDetail->amount}}</td>
+                                           <td>{{$saleDetail->value}}</td>
+                                           <td>{{$saleDetail->amount*$saleDetail->value}}</td>
+                                       </tr>
+                                       @endforeach
+                                    </tbody>
+                                </table>
+                            </div>             
+                                                                
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
-                                                <a href="{{ route('clientes.edit', $client->id) }}" class="btn green"> <i class="fa fa-pencil"></i> Editar </a>
+                                                <a href="{{ route('vendas.edit', $sale->id) }}" class="btn green"> <i class="fa fa-pencil"></i> Editar </a>
                                             </div>
                                         </div>
                                     </div>

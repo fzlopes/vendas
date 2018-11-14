@@ -86,27 +86,4 @@ class ProductController extends Controller
             ->route('produtos.index')
             ->with(['success' => 'Produto alterado com sucesso!']);
     }
-
-    public function getProducts()
-    {
-        $products = Product::orderBy('name', 'asc')->select('id', 'name','value')->get();
-        return response()->json($products);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $product = Product::find($id);
-
-        $product->delete();
-
-        \Session::flash('success', 'Produto ' . $product->name . ' apagado com sucesso.');
-
-        return response()->json(['message' => 'Produto ' . $product->name . ' apagado com sucesso.']);
-    }
 }

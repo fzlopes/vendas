@@ -102,21 +102,4 @@ class ClientController extends Controller
             ->route('clientes.index')
             ->with(['success' => 'Cliente alterado com sucesso!']);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $client = Client::find($id);
-
-        $client->delete();
-
-        \Session::flash('success', 'Cliente ' . $client->name . ' apagado com sucesso.');
-
-        return response()->json(['message' => 'Cliente ' . $client->name . ' apagado com sucesso.']);
-    }
 }

@@ -19,7 +19,6 @@ class CreateSaleDetailTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('amount')->unsigned();
             $table->decimal('value',8,2);
-            $table->decimal('subtotal',8,2);
             $table->timestamps();
         });
     }

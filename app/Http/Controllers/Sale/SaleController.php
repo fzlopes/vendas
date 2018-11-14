@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Sale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Sale;
-use PhpParser\Node\Stmt\TryCatch;
 use App\Client;
 use App\PaymentType;
 use App\SaleDetail;
@@ -41,10 +40,7 @@ class SaleController extends Controller
             ->get()
             ->pluck('name','id');
 
-            $products = Product::select('id','name')
-            ->orderBy('name', 'asc')
-            ->get()
-            ->pluck('name','id');    
+        $products = Product::orderby('name','asc')->get();
 
         return view('sales.create')->with(compact('clients','paymentTypes','products'));
     }
@@ -57,19 +53,36 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-            $sale = new Sale;
+            $sale = new Sale();
             $sale->user_id=$request->get('user_id');
             $sale->client_id=$request->get('client_id');
             $sale->paymentType_id=$request->get('paymentType_id');
             $sale->sale_date=$request->get('sale_date');
+            $sale->observation=$request->get('observation');
             $sale->sale_total=$request->get('sale_total');
             
             $sale->save();
-   
-            
+
+            $product_id = $request->get('product_id');
+            $amount = $request->get('amount');
+            $value = $request->get('value');
+        
+            $cont = 0;
+
+            while($cont < count($product_id)) {
+                $saleDetail = new SaleDetail();
+                $saleDetail->sale_id = $sale->id;
+                $saleDetail->product_id = $product_id[$cont];
+                $saleDetail->amount = $amount[$cont];
+                $saleDetail->value = $value[$cont];
+                $saleDetail->save();
+                $cont=$cont+1;
+            }
+
+               
         return redirect()
-        ->route('vendas.index')
-        ->with(['success' => 'Venda cadastrada com sucesso!']);
+            ->route('vendas.index')
+            ->with(['success' => 'Venda cadastrada com sucesso!']);
     }
 
     /**
@@ -80,7 +93,9 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+        $saleDetails = SaleDetail::where('sale_id','=',$id)->get();
+        return view('sales.show')->with(compact('sale','saleDetails'));
     }
 
     /**
@@ -92,7 +107,17 @@ class SaleController extends Controller
     public function edit($id)
     {
         $sale = Sale::findOrFail($id);
-        return view('sales.edit')->with(compact('sale'));
+        $clients = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+        
+        $paymentTypes = PaymentType::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+
+        return view('sales.edit')->with(compact('sale','clients','paymentTypes'));
     }
 
     /**
@@ -111,16 +136,5 @@ class SaleController extends Controller
         return redirect()
             ->route('vendas.index')
             ->with(['success' => 'Venda alterada com sucesso!']);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

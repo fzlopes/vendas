@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         @if(!empty($sale))
-            {!! Form::model($sale, ['url' => route('sales.update', $sale->id), 'method' => 'put']) !!}
+            {!! Form::model($sale, ['url' => route('vendas.update', $sale->id), 'method' => 'put']) !!}
             {!! Form::hidden('id', $sale->id) !!}
         @else
             {!! Form::open(['url' => route('vendas.store'), 'method' => 'post']) !!}
